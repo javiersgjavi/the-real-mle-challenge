@@ -1,0 +1,9 @@
+# Test data config
+expected_raw_row_count: 38277
+
+# Test model config
+
+expected_accuracy: 0.6047339757017176
+expected_roc_auc: 0.8183801557997225
+test_size: 0.15
+random_state: 1

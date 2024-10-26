@@ -1,0 +1,55 @@
+preprocessing:
+  columns_to_use:
+    - id
+    - neighbourhood_group_cleansed
+    - property_type
+    - room_type
+    - latitude
+    - longitude
+    - accommodates
+    - bathrooms
+    - bedrooms
+    - beds
+    - amenities
+    - price
+
+  columns_to_rename:
+    neighbourhood_group_cleansed: neighbourhood
+
+  target_regex: "(\\d+)."
+  target_dtype: int
+  min_price: 10
+
+  bins_categories:
+    - 10
+    - 90
+    - 180
+    - 400
+    - inf
+
+  amenities_to_drop:
+    - TV
+    - Internet
+    - Air conditioning
+    - Kitchen
+    - Heating
+    - Wifi
+    - Elevator
+    - Breakfast
+
+  categorical_mapping:
+    room_type:
+      Shared room: 1
+      Private room: 2
+      Entire home/apt: 3
+      Hotel room: 4
+    neighbourhood:
+      Bronx: 1
+      Queens: 2
+      Staten Island: 3
+      Brooklyn: 4
+      Manhattan: 5
+
+paths:
+  raw: data/raw/listings.csv
+  clean: data/processed/preprocessed_listings.csv

@@ -1,0 +1,22 @@
+model:
+  type: random_forest
+  params:
+    n_estimators: 500
+    random_state: 0
+    class_weight: 'balanced'
+    n_jobs: 4
+
+paths:
+  model: models/simple_classifier.pkl
+
+seed: 42
+
+features:
+  - neighbourhood
+  - room_type
+  - accommodates
+  - bathrooms
+  - bedrooms
+
+target: category
+
