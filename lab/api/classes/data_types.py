@@ -41,4 +41,3 @@ class BatchOutputData(BaseModel):
         ...,
         description="List of batch prediction results"
     )
-
