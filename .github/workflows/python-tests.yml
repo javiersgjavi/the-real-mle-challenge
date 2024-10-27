@@ -25,9 +25,21 @@ jobs:
         python -m pip install --upgrade pip
         pip install -r requirements.txt
     - name: Create .env file
+      shell: bash
+      env:
+        API_TOKEN: ${{ secrets.API_TOKEN }}
       run: |
-        echo "API_TOKEN=${{ secrets.API_TOKEN }}"
-        echo "API_TOKEN=${{ secrets.API_TOKEN }}" > .env
+        echo "API_TOKEN=$API_TOKEN" > .env
+        echo "Archivo .env creado con API_TOKEN configurado"
+    - name: Verificar .env file
+      shell: bash
+      run: |
+        if grep -q "API_TOKEN=" .env; then
+          echo "API_TOKEN está configurado en .env"
+        else
+          echo "Error: API_TOKEN no está configurado en .env"
+          exit 1
+        fi
     - name: Run flake8
       run: flake8 .
     - name: Lanzar API en segundo plano
