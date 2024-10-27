@@ -33,10 +33,10 @@ jobs:
         cat .env
     - name: Run flake8
       run: flake8 .
-    - name: Lanzar API en segundo plano
+    - name: Launch API with Docker
       run: |
-        chmod +x ./launch_docker.sh
-        ./launch_docker.sh
+        chmod +x ./launch.sh
+        ./launch.sh --docker
         echo "API lanzada con docker compose"
     - name: Run tests with coverage
       run: |
