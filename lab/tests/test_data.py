@@ -3,7 +3,7 @@ import unittest
 import numpy as np
 import pandas as pd
 from pathlib import Path
-from src.data.data import Data, load_config
+from lab.src.data.data import Data, load_config
 
 
 def load_test_config():

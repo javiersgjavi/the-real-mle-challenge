@@ -54,6 +54,8 @@ class PreprocessingPipeline:
             float(i) for i in self.config['bins_categories']
         ]
 
+        self.bins_names = self.config['bins_names']
+
         self.amenities_to_drop = self.config['amenities_to_drop']
 
         categorical_mapping = self.config['categorical_mapping']
@@ -141,6 +143,22 @@ class PreprocessingPipeline:
         )
         return df
 
+    def get_category_name(self, category: int) -> str:
+        """
+        Convert integer category to its corresponding bin name.
+
+        Args:
+            category (int): Integer category value.
+
+        Returns:
+            str: Corresponding bin name.
+        """
+        if 0 <= category < len(self.bins_names):
+            return self.bins_names[category]
+        else:
+            logging.warning(f"Category {category} is out of range")
+            return "Unknown"
+
     def preprocess_amenities(self, df: pd.DataFrame) -> pd.DataFrame:
         for amenity in self.amenities_to_drop:
             amenity_name = amenity.replace(' ', '_')
@@ -224,3 +242,6 @@ class Data:
         """
         df = pd.read_csv(self.path_raw)
         return self.preprocessing_pipeline.clean(df, map_categorical_features)
+
+    def get_preprocessing_pipeline(self):
+        return self.preprocessing_pipeline

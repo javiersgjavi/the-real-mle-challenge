@@ -10,7 +10,7 @@ sys.path.insert(0, str(project_root))
 def run_tests():
     # Discover and run all tests
     loader = unittest.TestLoader()
-    start_dir = project_root / 'tests'
+    start_dir = project_root / 'lab' / 'tests'
     suite = loader.discover(start_dir, pattern='test_*.py')
 
     runner = unittest.TextTestRunner(verbosity=2)

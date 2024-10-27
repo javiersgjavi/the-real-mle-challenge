@@ -2,8 +2,8 @@ import yaml
 import unittest
 import os
 from pathlib import Path
-from src.model.engine import ModelEngine
-from src.data.data import Data, load_config
+from lab.src.model.engine import ModelEngine
+from lab.src.data.data import Data, load_config
 from sklearn.model_selection import train_test_split
 
 

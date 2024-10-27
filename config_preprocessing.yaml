@@ -27,6 +27,12 @@ preprocessing:
     - 400
     - inf
 
+  bins_names:
+    - "Low"
+    - "Medium"
+    - "High"
+    - "Very High"
+
   amenities_to_drop:
     - TV
     - Internet
