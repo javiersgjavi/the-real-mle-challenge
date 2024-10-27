@@ -40,6 +40,7 @@ jobs:
           echo "Error: API_TOKEN no está configurado en .env"
           exit 1
         fi
+        ls -l .env
     - name: Run flake8
       run: flake8 .
     - name: Lanzar API en segundo plano
