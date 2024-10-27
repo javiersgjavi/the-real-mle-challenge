@@ -94,14 +94,14 @@ class TestModelEngine(unittest.TestCase):
 
     @classmethod
     def tearDownClass(cls):
-        # Eliminar archivos generados durante las pruebas
+        # Remove files generated during tests
         current_files = set(file.name for file in cls.model_path.glob('*.pkl'))
         files_to_remove = current_files - cls.original_files
 
         for file_name in files_to_remove:
             os.remove(cls.model_path / file_name)
 
-        print("Archivos generados eliminados.")
+        print("Generated files removed.")
 
 
 if __name__ == '__main__':

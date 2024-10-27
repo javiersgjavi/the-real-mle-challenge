@@ -1,17 +1,19 @@
+import os
 import unittest
 import requests
-import os
 from dotenv import load_dotenv
 
-# Intenta cargar las variables de entorno, pero no falla si .env no existe
+# Try to load environment variables, but don't fail if .env doesn't exist
 load_dotenv(verbose=True)
 
-# Si API_TOKEN no está en .env, intenta obtenerlo directamente de las
-# variables de entorno
+# If API_TOKEN is not in .env, try to get it directly from environment
+# variables
 API_TOKEN = os.getenv("API_TOKEN")
 
 if not API_TOKEN:
-    print("Warning: API_TOKEN not found. Some tests may fail.")
+    print(
+        "Warning: API_TOKEN not found. Some tests may fail."
+    )
 
 
 class TestAPIPredict(unittest.TestCase):
@@ -107,3 +109,23 @@ class TestAPIPredict(unittest.TestCase):
             json=self.data_individual
         )
         self.assertEqual(response.status_code, 403)
+
+    def test_invalid_room_type(self):
+        invalid_data = self.data_individual.copy()
+        invalid_data['room_type'] = "Invalid Room Type"
+        response = requests.post(
+            self.url,
+            json=invalid_data,
+            headers=self.headers
+        )
+        self.assertEqual(response.status_code, 422)  # Unprocessable Entity
+
+    def test_invalid_neighbourhood(self):
+        invalid_data = self.data_individual.copy()
+        invalid_data['neighbourhood'] = "Invalid Neighbourhood"
+        response = requests.post(
+            self.url,
+            json=invalid_data,
+            headers=self.headers
+        )
+        self.assertEqual(response.status_code, 422)  # Unprocessable Entity
