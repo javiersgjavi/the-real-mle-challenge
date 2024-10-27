@@ -11,7 +11,7 @@ def load_config() -> Dict[str, Any]:
     """
     Load the configuration from the config_preprocessing.yaml file.
 
-    Searches for the file in different locations and loads it if found.
+    Searches for the file and loads it if found.
 
     Returns:
         Dict[str, Any]: Dictionary with the loaded configuration.
@@ -19,24 +19,16 @@ def load_config() -> Dict[str, Any]:
     Raises:
         FileNotFoundError: If the configuration file is not found.
     """
-    name_file = 'config_preprocessing.yaml'
-    possible_paths = [
-        Path(__file__).parent.parent.parent.parent / name_file,
-        Path(__file__).parent.parent.parent / name_file,
-        Path(__file__).parent.parent / name_file,
-        Path(__file__).parent / name_file,
-        Path.cwd() / name_file
-    ]
+    file_name = 'config_preprocessing.yaml'
+    path = Path(__file__).parent.parent.parent.parent / file_name
 
-    for path in possible_paths:
-        if path.exists():
-            with open(path, 'r') as file:
-                return yaml.safe_load(file)
+    if path.exists():
+        with open(path, 'r') as file:
+            return yaml.safe_load(file)
 
-    logging.error("Could not find config_preprocessing.yaml file")
+    logging.error(f"Could not find {file_name} file")
     raise FileNotFoundError(
-        "Could not find config_preprocessing.yaml file. Searched in: \n" +
-        "\n".join(str(p) for p in possible_paths)
+        f"Could not find the {file_name} file. Searched in: \n{path}"
     )
 
 

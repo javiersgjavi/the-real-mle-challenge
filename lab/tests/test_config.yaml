@@ -7,3 +7,5 @@ expected_accuracy: 0.6047339757017176
 expected_roc_auc: 0.8183801557997225
 test_size: 0.15
 random_state: 1
+
+model_to_load: simple_classifier.pkl

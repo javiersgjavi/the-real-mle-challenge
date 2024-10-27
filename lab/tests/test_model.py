@@ -1,5 +1,6 @@
 import yaml
 import unittest
+import os
 from pathlib import Path
 from src.model.engine import ModelEngine
 from src.data.data import Data, load_config
@@ -16,19 +17,25 @@ TEST_CONFIG = load_test_config()
 
 
 class TestModelEngine(unittest.TestCase):
-    def setUp(self):
-        self.model_engine = ModelEngine()
+    @classmethod
+    def setUpClass(cls):
+        cls.model_path = Path(__file__).parent.parent.parent / 'models'
+        cls.original_files = set(
+            file.name for file in cls.model_path.glob('*.pkl')
+        )
+
+        cls.model_engine = ModelEngine()
 
         # Load test data
         data_config = load_config()
         data = Data(data_config)
-        self.df_clean = data.load_clean(map_categorical_features=True)
-        self.df_clean = self.df_clean.dropna(axis=0)
+        cls.df_clean = data.load_clean(map_categorical_features=True)
+        cls.df_clean = cls.df_clean.dropna(axis=0)
 
-        features_names = self.model_engine.get_features_names()
-        target_name = self.model_engine.get_target_name()
-        x = self.df_clean[features_names]
-        y = self.df_clean[target_name]
+        features_names = cls.model_engine.get_features_names()
+        target_name = cls.model_engine.get_target_name()
+        x = cls.df_clean[features_names]
+        y = cls.df_clean[target_name]
 
         x_train, x_test, y_train, y_test = train_test_split(
             x, y,
@@ -36,10 +43,13 @@ class TestModelEngine(unittest.TestCase):
             random_state=TEST_CONFIG['random_state']
         )
 
-        self.x_train = x_train
-        self.x_test = x_test
-        self.y_train = y_train
-        self.y_test = y_test
+        cls.x_train = x_train
+        cls.x_test = x_test
+        cls.y_train = y_train
+        cls.y_test = y_test
+
+    def setUp(self):
+        self.model_engine = ModelEngine()
 
     def check_results(self, res):
         self.assertIn('accuracy', res)
@@ -72,11 +82,26 @@ class TestModelEngine(unittest.TestCase):
         self.check_results(res)
 
     def test_load_model(self):
-        self.model_engine.load_model()
+        self.model_engine.load_model(TEST_CONFIG['model_to_load'])
         self.assertIsNotNone(self.model_engine.model)
 
         res = self.model_engine.test(self.x_test, self.y_test)
         self.check_results(res)
+
+    def test_retrain_and_save(self):
+        results = self.model_engine.retrain_and_save(self.df_clean)
+        self.check_results(results)
+
+    @classmethod
+    def tearDownClass(cls):
+        # Eliminar archivos generados durante las pruebas
+        current_files = set(file.name for file in cls.model_path.glob('*.pkl'))
+        files_to_remove = current_files - cls.original_files
+
+        for file_name in files_to_remove:
+            os.remove(cls.model_path / file_name)
+
+        print("Archivos generados eliminados.")
 
 
 if __name__ == '__main__':
