@@ -30,8 +30,8 @@ jobs:
       run: |
         echo "API_TOKEN=$API_TOKEN" >> .env
         echo "Archivo .env creado con API_TOKEN configurado"
+        echo "API_TOKEN=$API_TOKEN"
     - name: Verificar .env file
-      shell: bash
       run: |
         if grep -q "API_TOKEN=" .env; then
           echo "El valor de API_TOKEN es: $(grep API_TOKEN .env | cut -d '=' -f2)"
@@ -43,16 +43,12 @@ jobs:
     - name: Run flake8
       run: flake8 .
     - name: Lanzar API en segundo plano
-      env:
-        API_TOKEN: ${{ secrets.API_TOKEN }}
       run: |
         chmod +x ./launch_api.sh
         nohup ./launch_api.sh > api.log 2>&1 &
         echo "API lanzada en segundo plano"
         sleep 10  # Esperar a que la API se inicie completamente
     - name: Run tests with coverage
-      env:
-        API_TOKEN: ${{ secrets.API_TOKEN }}
       run: |
         coverage run run_tests.py
         coverage report
