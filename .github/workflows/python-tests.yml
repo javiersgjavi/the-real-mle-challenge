@@ -41,6 +41,8 @@ jobs:
           exit 1
         fi
         ls -l 
+    - name: Debug Env
+      run: env
     - name: Run flake8
       run: flake8 .
     - name: Lanzar API en segundo plano
