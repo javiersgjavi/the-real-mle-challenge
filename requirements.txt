@@ -5,3 +5,4 @@ scikit-learn==1.5.1
 matplotlib==3.9.2
 pytest==7.4.0
 coverage==7.6.2
+flake8==7.1.1
