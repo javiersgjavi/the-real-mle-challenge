@@ -25,8 +25,12 @@ jobs:
         echo "API_TOKEN=${{ secrets.API_TOKEN }}" > .env
     - name: Run flake8
       run: flake8 .
-    - name: launch api
-      run: chmod +x ./launch_api.sh && ./launch_api.sh
+    - name: Lanzar API en segundo plano
+      run: |
+        chmod +x ./launch_api.sh
+        nohup ./launch_api.sh > api.log 2>&1 &
+        echo "API lanzada en segundo plano"
+        sleep 3  # Esperar a que la API se inicie completamente
     - name: Run tests with coverage
       run: |
         cd lab
