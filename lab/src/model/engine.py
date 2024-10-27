@@ -24,8 +24,8 @@ def load_config() -> Dict[str, Any]:
         FileNotFoundError: If the configuration file is not found.
     """
 
-    file_name = 'config_model.yaml'
-    path = Path(__file__).parent.parent.parent.parent / file_name
+    file_name = 'model.yaml'
+    path = Path(__file__).parent.parent.parent.parent / 'config' / file_name
 
     if path.exists():
         with open(path, 'r') as file:

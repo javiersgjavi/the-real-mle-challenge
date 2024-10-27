@@ -35,10 +35,9 @@ jobs:
       run: flake8 .
     - name: Lanzar API en segundo plano
       run: |
-        chmod +x ./launch_api.sh
-        nohup ./launch_api.sh > api.log 2>&1 &
-        echo "API lanzada en segundo plano"
-        sleep 10  # Esperar a que la API se inicie completamente
+        chmod +x ./launch_docker.sh
+        ./launch_docker.sh
+        echo "API lanzada con docker compose"
     - name: Run tests with coverage
       run: |
         coverage run run_tests.py
