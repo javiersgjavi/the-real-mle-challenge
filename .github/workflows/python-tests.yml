@@ -35,7 +35,7 @@ jobs:
       shell: bash
       run: |
         if grep -q "API_TOKEN=" .env; then
-          echo "API_TOKEN está configurado en .env"
+          echo "El valor de API_TOKEN es: $(grep API_TOKEN .env | cut -d '=' -f2)"
         else
           echo "Error: API_TOKEN no está configurado en .env"
           exit 1
