@@ -1,7 +1,9 @@
 Pipfile
 
 .vscode/
-docs/*
+docs/build/
+docs/_build/
+docs/source/_build/
 
 __pycache__/
 *.pyc
