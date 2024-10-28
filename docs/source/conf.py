@@ -1,3 +1,6 @@
+import sys
+from pathlib import Path
+
 # Configuration file for the Sphinx documentation builder.
 #
 # For the full list of built-in configuration values, see the documentation:
@@ -30,10 +33,6 @@ exclude_patterns = []
 
 html_theme = 'sphinx_rtd_theme'
 html_static_path = ['_static']
-
-import os
-import sys
-from pathlib import Path
 
 # Get the absolute path to the project root
 project_root = Path(__file__).parents[2]
