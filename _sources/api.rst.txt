@@ -3,28 +3,28 @@ API Documentation
 
 Model Engine
 ------------------------------------------
-.. automodule:: lab.src.model.engine
+.. automodule:: src.model.engine
    :members:
    :undoc-members:
    :show-inheritance:
 
 Data Processing
 ------------------------------------------
-.. automodule:: lab.src.data.data
+.. automodule:: src.data.data
    :members:
    :undoc-members:
    :show-inheritance:
 
 API Controller
 ------------------------------------------
-.. automodule:: lab.api.classes.controller
+.. automodule:: app.classes.controller
    :members:
    :undoc-members:
    :show-inheritance:
 
 Data Types
 ------------------------------------------
-.. automodule:: lab.api.classes.data_types
+.. automodule:: app.classes.data_types
    :members:
    :undoc-members:
    :show-inheritance:
