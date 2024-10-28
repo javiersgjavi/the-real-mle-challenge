@@ -38,8 +38,22 @@ class InputData(BaseModel):
     tv: int = Field(..., ge=0, le=1, description="TV availability (0 or 1)")
     elevator: int = Field(..., ge=0, le=1, description="Elevator availability")
     internet: int = Field(..., ge=0, le=1, description="Internet availability")
-    latitude: float = Field(..., description="Latitude coordinate")
-    longitude: float = Field(..., description="Longitude coordinate")
+    latitude: float = Field(
+        ...,
+        ge=-90,
+        le=90,
+        description="Latitude coordinate (-90 to 90)"
+    )
+    longitude: float = Field(
+        ...,
+        ge=-180,
+        le=180,
+        description="Longitude coordinate (-180 to 180)"
+    )
+
+    class Config:
+        validate_assignment = True
+        extra = "forbid"
 
 
 class OutputData(BaseModel):

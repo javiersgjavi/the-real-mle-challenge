@@ -64,7 +64,7 @@ class APIController:
         Make predictions based on input data.
 
         Args:
-            input_data (Union[InputData, BatchInputData]): Input data for
+            input_data (Union[dict, Dict[str, List[dict]]]): Input data for
             prediction.
 
         Returns:
@@ -76,16 +76,10 @@ class APIController:
         """
         logger.info("Prediction request received")
         try:
-            # Additional validation for BatchInputData
-            if isinstance(input_data, BatchInputData):
-                for item in input_data.data:
-                    # This will raise ValidationError if there's invalid data
-                    InputData(**item.dict())
-
             is_batch = isinstance(input_data, BatchInputData)
             input_df = pd.DataFrame(
-                [data.dict() for data in
-                 (input_data.data if is_batch else [input_data])]
+                [data.dict() for
+                    data in (input_data.data if is_batch else [input_data])]
             )
 
             preprocessed_df = (
