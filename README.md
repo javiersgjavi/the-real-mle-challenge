@@ -1,3 +1,6 @@
+[![Documentation Status](https://github.com/javiersgjavi/the-real-mle-challenge/actions/workflows/docs.yml/badge.svg)](https://javiersgjavi.github.io/the-real-mle-challenge/) [![Python Tests](https://github.com/javiersgjavi/the-real-mle-challenge/actions/workflows/python-tests.yml/badge.svg)](https://github.com/javiersgjavi/the-real-mle-challenge/actions/workflows/python-tests.yml)
+
+
 # The NY Estimator Problem
 In this challenge, we will explore the use of Airbnb listing data to predict the price category for new listings. We want to represent a real-case scenario where the MLE is working hand-to-hand with the Data Scientists at Intelygenz.
 
