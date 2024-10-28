@@ -4,9 +4,9 @@
 
 ### Challenge 1
 
-For this part, I reviewed the notebook code and organized it into classes to make the workflow easier to manage. All code is implemented within `lab/src/`.
+For this part, I reviewed the notebook code and organized it into classes to make the workflow easier to manage. All code is implemented within `src/`.
 
-I also implemented tests in the `lab/tests` folder, which can be run from the `run_tests.py` file in the project root. These tests, along with a coverage check and Flake8, are integrated into GitHub Actions to ensure automated testing with each commit, promoting a robust testing workflow in the repository. Additionally, Sphinx is used to automatically generate project documentation, accessible at:
+I also implemented tests in the `tests/` folder, which can be run from the `test.sh` file in the project root. These tests, along with a coverage check and Flake8, are integrated into GitHub Actions to ensure automated testing with each commit, promoting a robust testing workflow in the repository. Additionally, Sphinx is used to automatically generate project documentation, accessible at:
 
 [![Documentation Status](https://github.com/javiersgjavi/the-real-mle-challenge/actions/workflows/docs.yml/badge.svg)](https://javiersgjavi.github.io/the-real-mle-challenge/)
 
@@ -18,8 +18,8 @@ The resulting project structure is as follows:
 - `data/`: folder containing data files.
 - `models/`: folder for stored models.
 - `docs/`: folder for generating automatic documentation.
-- `lab/src/`: folder containing the main files for this part of the challenge.
-- `lab/tests/`: folder containing implemented test files.
+- `src/`: folder containing the main files for this part of the challenge.
+- `tests/`: folder containing implemented test files.
 - `test.sh`: Python script to run tests and measure coverage. It must be given execution permissions before running.
 - `requirements.txt`
 
@@ -109,9 +109,9 @@ At this point, the root project structure is as follows:
 - `data/`: folder containing data files.
 - `models/`: folder for stored models.
 - `docs/`: folder for generating automatic documentation.
-- `lab/src/`: folder containing the main files for this part of the challenge.
-- `lab/tests/`: folder containing implemented test files.
-- `lab/api/`: API-related code.
+- `src/`: folder containing the main files for this part of the challenge.
+- `tests/`: folder containing implemented test files.
+- `api/`: API-related code.
 - `test.sh`: Python script to run tests and measure coverage. It must be given execution permissions before running.
 - `requirements.txt`
 - `api.py`: main file to launch the developed API.
@@ -182,9 +182,9 @@ With these adjustments, the final repository structure is as follows:
 - `docker/`: Docker configuration files.
 - `models/`: folder for stored models.
 - `docs/`: folder for generating automatic documentation.
-- `lab/src/`: folder containing the main files for this part of the challenge.
-- `lab/tests/`: folder containing implemented test files.
-- `lab/api/`: API-related code.
+- `src/`: folder containing the main files for this part of the challenge.
+- `tests/`: folder containing implemented test files.
+- `api/`: API-related code.
 - `test.sh`: Python script to run tests and measure coverage. It must be given execution permissions before running.
 - `launch.sh`: script to launch the application.
 - `requirements.txt`
