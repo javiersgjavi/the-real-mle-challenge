@@ -25,7 +25,7 @@ def load_config() -> Dict[str, Any]:
     """
 
     file_name = 'model.yaml'
-    path = Path(__file__).parent.parent.parent.parent / 'config' / file_name
+    path = Path(__file__).parent.parent.parent / 'config' / file_name
 
     if path.exists():
         with open(path, 'r') as file:
@@ -46,7 +46,7 @@ class ModelEngine:
         """
         Initialize the ModelEngine class.
         """
-        self.base_path = Path(__file__).parent.parent.parent.parent
+        self.base_path = Path(__file__).parent.parent.parent
         self.config = load_config()
         self.model_name = self.config['model']['type']
         self.train_config = self.config['train_config']

@@ -21,7 +21,7 @@ def load_config() -> Dict[str, Any]:
         FileNotFoundError: If the configuration file is not found.
     """
     file_name = 'preprocessing.yaml'
-    path = Path(__file__).parent.parent.parent.parent / 'config' / file_name
+    path = Path(__file__).parent.parent.parent / 'config' / file_name
 
     if path.exists():
         with open(path, 'r') as file:
@@ -219,7 +219,7 @@ class Data:
         Args:
             config (Dict[str, Any]): Configuration for data processing.
         """
-        self.base_path = Path(__file__).parent.parent.parent.parent
+        self.base_path = Path(__file__).parent.parent.parent
         self.path_raw = self.base_path / config['paths']['raw']
         self.path_clean = self.base_path / config['paths']['clean']
         self.preprocessing_pipeline = PreprocessingPipeline(config)

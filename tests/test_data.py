@@ -3,7 +3,7 @@ import unittest
 import numpy as np
 import pandas as pd
 from pathlib import Path
-from lab.src.data.data import Data, load_config
+from src.data.data import Data, load_config
 
 
 def load_test_config():
@@ -37,7 +37,7 @@ class TestLoadConfig(unittest.TestCase):
 class TestData(unittest.TestCase):
     def setUp(self):
         self.config = load_config()
-        self.base_path = Path(__file__).parent.parent.parent
+        self.base_path = Path(__file__).parent.parent
         self.data = Data(self.config)
 
     def test_load_raw(self):

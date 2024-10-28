@@ -5,9 +5,9 @@ from fastapi import HTTPException
 from starlette.status import HTTP_403_FORBIDDEN
 from pydantic import ValidationError
 
-from lab.src.data.data import Data, load_config as load_data_config
-from lab.src.model.engine import ModelEngine
-from lab.api.classes.data_types import InputData, OutputData, BatchInputData, \
+from src.data.data import Data, load_config as load_data_config
+from src.model.engine import ModelEngine
+from app.classes.data_types import InputData, OutputData, BatchInputData, \
     BatchOutputData
 
 logger = logging.getLogger(__name__)

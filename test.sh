@@ -1,1 +1,1 @@
-cd lab/tests && coverage run run_tests.py && coverage report
+cd tests/ && coverage run run_tests.py && coverage report

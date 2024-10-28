@@ -4,8 +4,9 @@ from pathlib import Path
 
 def load_api_config():
     config_path = (
-        Path(__file__).resolve().parent.parent.parent / 'config' / 'api.yaml'
+        Path(__file__).resolve().parent.parent / 'config' / 'api.yaml'
     )
+    print(config_path)
     if not config_path.exists():
         raise FileNotFoundError(
             f"Configuration file not found at: {config_path}"

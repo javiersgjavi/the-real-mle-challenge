@@ -6,11 +6,13 @@ from dotenv import load_dotenv
 from fastapi import FastAPI, Depends, Security
 from fastapi.security.api_key import APIKeyHeader, APIKey
 
-from lab.api.classes.controller import APIController
-from lab.api.classes.data_types import InputData, OutputData, BatchInputData, \
+from app.classes.controller import APIController
+from app.classes.data_types import InputData, OutputData, BatchInputData, \
     BatchOutputData
 
-from lab.api.utils import load_api_config
+from app.utils import load_api_config
+
+app = FastAPI()
 
 # Configure logging
 logging.basicConfig(

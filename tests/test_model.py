@@ -2,13 +2,14 @@ import yaml
 import unittest
 import os
 from pathlib import Path
-from lab.src.model.engine import ModelEngine
-from lab.src.data.data import Data, load_config
+from src.model.engine import ModelEngine
+from src.data.data import Data, load_config
 from sklearn.model_selection import train_test_split
 
 
 def load_test_config():
     config_path = Path(__file__).parent / 'test_config.yaml'
+    print(config_path)
     with open(config_path, 'r') as file:
         return yaml.safe_load(file)
 
@@ -19,7 +20,7 @@ TEST_CONFIG = load_test_config()
 class TestModelEngine(unittest.TestCase):
     @classmethod
     def setUpClass(cls):
-        cls.model_path = Path(__file__).parent.parent.parent / 'models'
+        cls.model_path = Path(__file__).parent.parent / 'models'
         cls.original_files = set(
             file.name for file in cls.model_path.glob('*.pkl')
         )
