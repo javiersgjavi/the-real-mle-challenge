@@ -40,8 +40,7 @@ jobs:
         echo "API lanzada con docker compose"
     - name: Run tests with coverage
       run: |
-        coverage run run_tests.py
-        coverage report
-        coverage xml
+        chmod +x ./test.sh
+        ./test.sh
     - name: Remove .env file
       run: rm .env
