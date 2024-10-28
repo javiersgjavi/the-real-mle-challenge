@@ -42,7 +42,7 @@ To manage class parameters and facilitate easy adjustments, I added configuratio
 
 #### 1. `Data` Class
 
-The `Data` class handles the loading and storage of Airbnb data:
+Handles the loading and storage of Airbnb data:
 - **`load_raw()`**: Loads raw data from the CSV file specified in `preprocessing.yaml`.
 - **`load_clean()`**: Executes the full preprocessing of the data using `PreprocessingPipeline`.
 
@@ -80,7 +80,7 @@ The `ModelEngine` class handles the training, evaluation, and management of the 
 In `TestModelEngine`, tests verify:
 - **`test_train()`**: Trains and evaluates the model, validating the `accuracy` and `roc_auc` results against expected values in `test_config.yaml`.
 - **`test_load_model()`**: Confirms that the loaded model makes predictions and achieves the expected accuracy.
-- **`test_retrain_and_save()`**: Evaluates the retraining process and saves the updated model, ensuring generated files are consistent and removed after testing.
+- **`test_retrain_and_save()`**: Evaluates the retraining process and saves the updated model.
 
 
 #### Questions for the Team
@@ -104,7 +104,6 @@ I created a minimalistic API with essential prediction functionality, structurin
 
 At this point, the root project structure is as follows:
 
-The resulting project structure is as follows:
 - `.github/workflows/`: folder containing workflows triggered with each commit.
 - `config/`: folder for configuration files.
 - `data/`: folder containing data files.
@@ -125,13 +124,12 @@ The primary components are as follows:
     - The **Endpoints**:
       - `/`: Provides a welcome message.
       - `/predict`: Handles both individual and batch prediction requests.
-    - Authentication is implemented through an API key stored in environment variables (`API_TOKEN`). Requests require this key for authorization.
+    - Authentication is implemented through an API key stored in environment variables (`API_TOKEN`). Requests require this key for authorization, which stored in `.env`.
     - **API Documentation**: Accessible at [http://localhost:8000/redoc](http://localhost:8000/redoc) for a full overview of the available endpoints, request formats, and responses.
-    - Note: The API uses an access token stored in a `.env` file for authentication.
 
 - **Modules**:
     - **`controller.py`**: Centralizes API logic, handling data preprocessing, prediction, and API key validation.
-    - **`data_types.py`**: Defines data models using Pydantic, ensuring consistent validation for all incoming requests.
+    - **`data_types.py`**: Defines data models using Pydantic, ensuring validation for all incoming requests.
     - **`utils.py`**: Loads the API configuration (`api.yaml`), handling errors if the configuration file is missing.
     - **`api.yaml`**: Specifies the model to use for predictions (`simple_classifier.pkl`), enabling flexibility in model selection.
 
@@ -148,7 +146,7 @@ The primary components are as follows:
 - **Configuration Flexibility**: We should consider extending `api.yaml` and model selection to support multiple model types.
 - **Add Endpoints**: For loading new models, retraining with new data, etc.
 
-### Challenge 3 - Dockerize your solution
+### Challenge 3
 
 The goal of this challenge is to dockerize the API, making it straightforward to deploy and run in production. To achieve this, I created a `docker/` folder containing the following files:
 
