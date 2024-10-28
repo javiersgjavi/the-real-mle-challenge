@@ -7,7 +7,7 @@ on:
     branches: [ main ]
 
 permissions:
-  contents: read
+  contents: write  # Cambiado a write para permitir el deploy de docs
   id-token: write
 
 jobs:
@@ -43,5 +43,15 @@ jobs:
         coverage run run_tests.py
         coverage report
         coverage xml
+    - name: Build documentation
+      run: |
+        cd docs
+        make html
+    - name: Deploy to GitHub Pages
+      uses: peaceiris/actions-gh-pages@v3
+      if: github.ref == 'refs/heads/main'
+      with:
+        github_token: ${{ secrets.GITHUB_TOKEN }}
+        publish_dir: ./docs/build/html
     - name: Remove .env file
       run: rm .env
